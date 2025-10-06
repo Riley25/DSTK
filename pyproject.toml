@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dstk"                      
+name = "DataNova"                      
 version = "0.0.1"                   
-description = "A tiny example package (DSTK)."
+description = "This is the start of DataNova."
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }         
@@ -17,8 +17,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Riley25/DSTK"
-Issues = "https://github.com/Riley25/DSTK/issues"
+Homepage = "https://github.com/Riley25/DataNova"
+Issues = "https://github.com/Riley25/DataNova/issues"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -1,4 +1,4 @@
-# DSTK
+# DataNova
 
 A tiny example package.  
 

@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: dstk
+Version: 0.0.1
+Summary: A tiny example package (DSTK).
+Author: Riley Heiman
+License: MIT
+Project-URL: Homepage, https://github.com/Riley25/DSTK
+Project-URL: Issues, https://github.com/Riley25/DSTK/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# DSTK
+
+A tiny example package.  
+
+```python
+import dstk
+dstk.hello()
