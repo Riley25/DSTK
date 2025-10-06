@@ -1,0 +1,6 @@
+.env
+*.url
+*.xlsx
+*.csv
+.vscode/
+*.txt
