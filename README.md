@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Riley25/DataNova/refs/heads/main/imges/supernova.jpg" alt="DataNova Logo" width="500">
+  <img src="https://raw.githubusercontent.com/Riley25/DataNova/refs/heads/main/imges/supernova.jpg" alt="DataNova Logo" width="700">
 </p>
 
 # 🌌 DataNova
