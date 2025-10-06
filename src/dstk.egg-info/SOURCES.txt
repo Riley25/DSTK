@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-src/dstk/__init__.py
-src/dstk/test.py
-src/dstk.egg-info/PKG-INFO
-src/dstk.egg-info/SOURCES.txt
-src/dstk.egg-info/dependency_links.txt
-src/dstk.egg-info/top_level.txt

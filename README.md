@@ -3,5 +3,5 @@
 A tiny example package.  
 
 ```python
-import dstk
+import datanova as dn
 dstk.hello()
