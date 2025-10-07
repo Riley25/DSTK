@@ -12,7 +12,6 @@ Analyze, summarize, and visualize your data in just a few lines of code.
 - **Instant profiling**: Summarize your dataset structure with `dn.profile(df)`
 - **Simple regression & stats** (coming soon!)
 
-
 ---
 
 ## 🧭 Installation
