@@ -25,4 +25,4 @@ Issues = "https://github.com/Riley25/DataNova/issues"
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["src"] 
