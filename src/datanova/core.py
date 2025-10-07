@@ -200,7 +200,3 @@ def profile( df:pd.DataFrame ) -> pd.DataFrame:
 
 
 
-
-
-
-#pd.read_excel()
