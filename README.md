@@ -11,8 +11,7 @@ Analyze, summarize, and visualize your data in just a few lines of code.
 ## 🚀 Features
 - **Instant profiling**: Summarize your dataset structure with `dn.profile(df)`
 - **Simple regression & stats** (coming soon!)
-- **Zero setup** — works directly with your pandas DataFrame
-- **R-like syntax** for fast exploratory analysis
+
 
 ---
 
