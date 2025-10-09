@@ -2,7 +2,6 @@ import os
 import pandas as pd
 from typing import Optional, Sequence, Union
 
-
 pd.set_option('display.max_columns', None)
 
 
@@ -11,13 +10,11 @@ def hello():
 
 
 
-#############################
-###        NOTES
+###############################################
+###                  NOTES
 #
 #     We need fastparquet, pyarrow, openpyxl, 
 #
-#
-
 ## All functions live here. 
 
 import pandas as pd 
