@@ -145,58 +145,41 @@ def profile( df:pd.DataFrame ) -> pd.DataFrame:
     """
 
     n_row, n_col = df.shape
+    r_total = "{:,}".format(n_row)
+    print("ROW TOTAL = " + str(r_total) + " COLUMNS = " + str(n_col))
 
     # Basic summary
     summary = pd.DataFrame({
-        'Variable Name': df.columns,
-        'Variable Type': df.dtypes,
-        'Missing Count': df.isnull().sum(),
-        '% Blank': (df.isnull().sum() / n_row * 100).round(0).astype(int),
-        'Unique Values': df.nunique(),
-        'Most Frequent Value': df.apply(lambda col: col.mode().iloc[0] if not col.mode().empty else pd.NA)
+        "Variable Name": df.columns,
+        "Variable Type": df.dtypes.astype(str),
+        "Missing Count": df.isna().sum(),
+        "% Blank": (df.isna().mean() * 100).round(0).astype("Int64"),
+        "Unique Values": df.nunique(dropna=True),
+        "Most Frequent Value": df.apply(
+            lambda col: col.mode(dropna=True).iloc[0] if not col.mode(dropna=True).empty else pd.NA
+        ),
     })
 
-    # Numeric summary 
-    numeric_stats = (
-        df.describe(include='number')
+    # Universal describe (works for text-only, numeric-only, or mixed)
+    desc = (
+        df.describe(include="all")
           .T
           .reset_index()
-          .rename(columns={'index': 'Variable Name'})
-          .round(2)  # <--- Round numeric columns to 2 decimals
+          .rename(columns={"index": "Variable Name", "50%": "Median"})
     )
 
-    # Drop & rename columns
-    if 'count' in numeric_stats.columns:
-        numeric_stats.drop(columns='count', inplace=True)
-    
-    if '50%' in numeric_stats.columns:
-        numeric_stats.rename(columns={'50%': 'Median'}, inplace=True)
+    # Round numeric-looking stats if present (coerce non-numerics to NaN, which stay untouched)
+    for col in ["mean", "std", "min", "25%", "Median", "75%", "max"]:
+        if col in desc.columns:
+            desc[col] = pd.to_numeric(desc[col], errors="coerce").round(2)
 
-    if 'mean' in numeric_stats.columns:
-        numeric_stats.rename(columns={'mean': 'Mean'}, inplace=True)
+    # Merge and return
+    final = summary.merge(desc, on="Variable Name", how="left")
 
-    if 'std' in numeric_stats.columns:
-        numeric_stats.rename(columns={'std': 'Standard Deviation'}, inplace=True)
-
-    if 'min' in numeric_stats.columns:
-        numeric_stats.rename(columns={'min': 'Min'}, inplace=True)
-
-    if 'max' in numeric_stats.columns:
-        numeric_stats.rename(columns={'max': 'Max'}, inplace=True)
+    final['count'] = final['count'].astype("Int64")
+    return( final )
 
 
-    # Skewness
-    numeric_skew = df.skew(numeric_only=True).reset_index()
-    numeric_skew.columns = ['Variable Name', 'Skewness']
-
-    # Merge everything
-    final_summary = summary.merge(numeric_stats, on='Variable Name', how='left')
-    final_summary = final_summary.merge(numeric_skew, on='Variable Name', how='left')
-
-    print('Number of Rows = ' + str(n_row) )
-    print('Number of Columns = ' + str(n_col)  )
-
-    return(final_summary)
 
 
 
