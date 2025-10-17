@@ -13,7 +13,7 @@ def hello():
 ###############################################
 ###                  NOTES
 #
-#     We need fastparquet, pyarrow, openpyxl, 
+#     We need fastparquet, pyarrow, openpyxl, matplotlib, sklearn, numpy, statsmodels
 #
 ## All functions live here. 
 
