@@ -137,8 +137,7 @@ def profile( df:pd.DataFrame ) -> pd.DataFrame:
     Returns
     -------
     pd.DataFrame
-        A summary with column metadata, missingness, uniqueness, and numeric stats.
-
+        A summary with numeric stats, column metadata, etx.
     """
 
     n_row, n_col = df.shape
@@ -162,18 +161,33 @@ def profile( df:pd.DataFrame ) -> pd.DataFrame:
         df.describe(include="all")
           .T
           .reset_index()
-          .rename(columns={"index": "Variable Name", "50%": "Median"})
+          .rename(columns={"index":"Variable Name", 'count':'Count', 'unique':'Unique', 'top':'Top', "mean":"Mean", "50%": "Median", "max":"Max", "min":"Min", "std":"Standard Deviation"})
     )
 
     # Round numeric-looking stats if present (coerce non-numerics to NaN, which stay untouched)
-    for col in ["mean", "std", "min", "25%", "Median", "75%", "max"]:
+    for col in ["Mean", "Standard Deviation", "Min", "25%", "Median", "75%", "Max"]:
         if col in desc.columns:
             desc[col] = pd.to_numeric(desc[col], errors="coerce").round(2)
 
     # Merge and return
     final = summary.merge(desc, on="Variable Name", how="left")
 
-    final['count'] = final['count'].astype("Int64")
+
+    if 'freq' in final.columns:
+        final.drop(columns='freq', inplace=True)
+
+    if 'top' in final.columns:
+        final.drop(columns='top', inplace=True)
+
+    if 'Top' in final.columns:
+        final.drop(columns='Top', inplace=True)
+
+    if 'Count' in final.columns:
+        final.drop(columns='Count', inplace=True)
+
+    if 'Unique' in final.columns:
+        final.drop(columns='Unique', inplace=True)
+
     return( final )
 
 
